@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+---
+<Layout
+  title="FAQ — Global Dialysis Care Center"
+  description="Plain answers to common questions about dialysis treatment, your first visit, insurance, home dialysis safety, and more."
+>
+  <!-- Page hero -->
+  <section class="py-[88px] px-6 md:px-24 bg-white border-b border-hair">
+    <div class="max-w-[1248px] mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 border border-hair rounded-full bg-white font-mono text-[11px] text-brand-deep tracking-[0.06em] uppercase mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-aqua"></span>
+        Frequently asked questions
+      </div>
+      <h1 class="font-display font-medium text-[56px] md:text-[72px] leading-[1.04] tracking-[-0.025em] text-ink m-0 max-w-[760px]" style="text-wrap:pretty;">
+        Answers to your most common questions.
+      </h1>
+      <p class="mt-6 text-[18px] md:text-[20px] text-muted max-w-[580px] leading-[1.5]">
+        Plain, reassuring answers — designed to ease anxiety before your first visit.
+        Can't find what you need? We're here to help.
+      </p>
+    </div>
+  </section>
+
+  <FAQ />
+</Layout>

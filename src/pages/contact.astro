@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Contact from '../components/Contact.astro';
+---
+<Layout
+  title="Contact — Global Dialysis Care Center"
+  description="Schedule a consultation or reach out to our care team. We respond within one business day."
+>
+  <!-- Page hero -->
+  <section class="py-[88px] px-6 md:px-24 bg-white border-b border-hair">
+    <div class="max-w-[1248px] mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 border border-hair rounded-full bg-white font-mono text-[11px] text-brand-deep tracking-[0.06em] uppercase mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-aqua"></span>
+        Get in touch
+      </div>
+      <h1 class="font-display font-medium text-[56px] md:text-[72px] leading-[1.04] tracking-[-0.025em] text-ink m-0 max-w-[760px]" style="text-wrap:pretty;">
+        Take the next step — at your pace.
+      </h1>
+      <p class="mt-6 text-[18px] md:text-[20px] text-muted max-w-[580px] leading-[1.5]">
+        Reach out and a member of our care team will respond within one business day.
+        No pressure — just a conversation.
+      </p>
+    </div>
+  </section>
+
+  <Contact />
+</Layout>

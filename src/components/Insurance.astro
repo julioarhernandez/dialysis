@@ -1,0 +1,38 @@
+---
+const plans = ['Medicare', 'Medicaid', 'Blue Cross Blue Shield', 'Aetna', 'Cigna', 'UnitedHealthcare', 'Humana', 'Kaiser'];
+---
+<section id="insurance" class="py-[88px] px-6 md:px-24 bg-white">
+  <div class="max-w-[1248px] mx-auto">
+    <div class="bg-brand-deep rounded-[28px] p-8 md:p-14 text-white relative overflow-hidden">
+
+      <!-- Aqua glow -->
+      <div class="absolute -right-24 -top-24 w-[360px] h-[360px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(63,186,192,0.33),transparent 65%);" aria-hidden="true"></div>
+
+      <div class="relative grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-10 items-center">
+
+        <!-- Left copy -->
+        <div>
+          <div class="font-mono text-[11px] text-aqua tracking-[0.16em] uppercase mb-4">07 — Insurance &amp; payments</div>
+          <h2 class="font-display font-medium text-[36px] leading-[1.1] tracking-[-0.022em] m-0" style="text-wrap:pretty;">
+            Transparent coverage. No financial surprises.
+          </h2>
+          <p class="mt-4 text-base text-white/80 max-w-[460px]">
+            Most major insurance, Medicare, and Medicaid are accepted. Our team verifies your coverage
+            and walks through every cost before treatment begins.
+          </p>
+        </div>
+
+        <!-- Right: plan grid -->
+        <div class="grid grid-cols-2 gap-2.5">
+          {plans.map(plan => (
+            <div class="rounded-[12px] px-4 py-3.5 text-sm font-medium flex items-center gap-2.5" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);">
+              <span class="w-1.5 h-1.5 rounded-full bg-aqua flex-shrink-0"></span>
+              {plan}
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

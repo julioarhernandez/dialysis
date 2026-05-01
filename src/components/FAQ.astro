@@ -1,0 +1,110 @@
+---
+const faqs = [
+  {
+    q: 'How long does a typical dialysis session last?',
+    a: 'In-center hemodialysis sessions usually run 3–4 hours, three times per week. Home and peritoneal options offer more flexible scheduling tailored to your routine.',
+  },
+  {
+    q: 'What should I expect at my first visit?',
+    a: "You'll meet your care team, review your medical history, and tour the clinic. We'll walk you through every option without pressure — and you'll leave with a written care plan.",
+  },
+  {
+    q: 'Is home dialysis safe to perform on my own?',
+    a: 'Yes. Patients receive thorough training before starting, and a dedicated nurse remains available 24/7 throughout the program for questions and support.',
+  },
+  {
+    q: 'Will my insurance cover treatment?',
+    a: 'Most major insurance plans, Medicare, and Medicaid cover dialysis. Our team will verify your specific coverage and explain any out-of-pocket costs before treatment begins.',
+  },
+  {
+    q: 'Can family members be involved in care?',
+    a: 'Absolutely. We encourage family participation in education sessions, and offer dedicated support resources for caregivers and loved ones.',
+  },
+  {
+    q: 'How do I know which type of dialysis is right for me?',
+    a: 'Your nephrologist and care team will discuss your medical needs and lifestyle to recommend the best fit. The choice is collaborative, and many patients try more than one option.',
+  },
+];
+---
+<section class="py-[88px] px-6 md:px-24 bg-tint">
+  <div class="max-w-[1248px] mx-auto grid grid-cols-1 md:grid-cols-[0.9fr_1.4fr] gap-8 md:gap-20 items-start">
+
+    <!-- Left: header -->
+    <div class="md:sticky md:top-[100px]">
+      <div class="font-mono text-[11px] text-brand tracking-[0.16em] uppercase mb-4">06 — Questions</div>
+      <h2 class="font-display font-medium text-[38px] leading-[1.1] tracking-[-0.022em] text-ink m-0 max-w-[400px]" style="text-wrap:pretty;">
+        Answers to your most common questions.
+      </h2>
+      <p class="mt-4 text-[17px] text-muted leading-[1.5] max-w-[380px]">
+        Plain, reassuring answers — designed to ease anxiety before your first visit.
+      </p>
+      <a
+        href="/contact"
+        class="mt-6 inline-flex items-center gap-2.5 px-[22px] py-[14px] rounded-[10px] bg-brand text-white font-semibold text-sm no-underline"
+        style="box-shadow:0 1px 0 rgba(255,255,255,0.2) inset,0 6px 20px rgba(14,77,122,0.20);"
+      >
+        Talk to a specialist
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Right: accordion -->
+    <div class="bg-white rounded-[20px] border border-hair overflow-hidden" id="faq-accordion">
+      {faqs.map((faq, i) => (
+        <div class="faq-item" class:list={[i !== 0 && 'border-t border-hair']}>
+          <button
+            class="faq-btn w-full flex items-center justify-between gap-4 px-[26px] py-[22px] text-left cursor-pointer bg-transparent border-none"
+            aria-expanded="false"
+          >
+            <span class="font-display font-medium text-[16.5px] text-ink tracking-[-0.01em]">{faq.q}</span>
+            <span class="faq-icon w-[30px] h-[30px] rounded-full bg-tint text-brand flex items-center justify-center flex-shrink-0 transition-all duration-200">
+              <!-- Plus icon (default) -->
+              <svg class="icon-plus" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              <!-- Minus icon (open) -->
+              <svg class="icon-minus hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer hidden px-[26px] pb-[22px] text-[14.5px] text-muted leading-[1.6] max-w-[640px]">
+            {faq.a}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const items = document.querySelectorAll('#faq-accordion .faq-item');
+  items.forEach(item => {
+    const btn = item.querySelector('.faq-btn') as HTMLButtonElement;
+    const answer = item.querySelector('.faq-answer') as HTMLElement;
+    const icon = item.querySelector('.faq-icon') as HTMLElement;
+    const plusIcon = item.querySelector('.icon-plus') as HTMLElement;
+    const minusIcon = item.querySelector('.icon-minus') as HTMLElement;
+
+    btn.addEventListener('click', () => {
+      const isOpen = !answer.classList.contains('hidden');
+
+      // Close all
+      items.forEach(it => {
+        (it.querySelector('.faq-answer') as HTMLElement).classList.add('hidden');
+        const ic = it.querySelector('.faq-icon') as HTMLElement;
+        ic.style.background = '';
+        ic.style.color = '';
+        (it.querySelector('.icon-plus') as HTMLElement).classList.remove('hidden');
+        (it.querySelector('.icon-minus') as HTMLElement).classList.add('hidden');
+        (it.querySelector('.faq-btn') as HTMLButtonElement).setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        icon.style.background = '#0e4d7a';
+        icon.style.color = '#fff';
+        plusIcon.classList.add('hidden');
+        minusIcon.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>

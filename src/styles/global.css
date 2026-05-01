@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-ink bg-white antialiased;
+    letter-spacing: -0.012em;
+    line-height: 1.55;
+  }
+  * {
+    box-sizing: border-box;
+  }
+}
