@@ -1,21 +1,5 @@
 ---
-const items = [
-  {
-    title: 'Personalized care plans',
-    desc: 'Every patient receives a tailored treatment plan built collaboratively with their medical team — fitting their unique health needs and lifestyle.',
-    icon: `<path d="M12 3v6M12 15v6M3 12h6M15 12h6"/>`,
-  },
-  {
-    title: 'Emotional & family support',
-    desc: 'Dialysis affects the whole family. We provide resources, guidance, and emotional support for both patients and their loved ones.',
-    icon: `<circle cx="9" cy="9" r="3"/><circle cx="17" cy="11" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><path d="M14 19c.5-2 2.5-3.5 5-3.5"/>`,
-  },
-  {
-    title: 'Patient education & guidance',
-    desc: 'We empower patients with knowledge about their condition, treatment options, and self-care so they can make informed decisions with confidence.',
-    icon: `<path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/>`,
-  },
-];
+import { PATIENT_CARE_ITEMS } from '../data/about.js';
 ---
 <section class="py-[88px] px-6 md:px-24 bg-white">
   <div class="max-w-[1248px] mx-auto grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-10 md:gap-20 items-start">
@@ -49,7 +33,7 @@ const items = [
 
     <!-- Right: care items -->
     <div class="flex flex-col gap-3">
-      {items.map(item => (
+      {PATIENT_CARE_ITEMS.map(item => (
         <div class="bg-white rounded-[18px] border border-hair p-6 flex gap-[18px] items-start">
           <div class="w-11 h-11 rounded-[12px] bg-tint flex-shrink-0 flex items-center justify-center text-brand">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={item.icon}/>

@@ -1,33 +1,19 @@
 ---
-const cols = [
-  {
-    title: 'Care',
-    links: [
-      { label: 'Services',       href: '/services' },
-      { label: 'Patient care',   href: '/patient-care' },
-      { label: 'New patients',   href: '/contact' },
-      { label: 'Insurance',      href: '/services#insurance' },
-    ],
-  },
-  {
-    title: 'Clinic',
-    links: [
-      { label: 'About us',  href: '/#about' },
-      { label: 'Our team',  href: '/#about' },
-      { label: 'Locations', href: '/contact' },
-      { label: 'Careers',   href: '/contact' },
-    ],
-  },
-  {
-    title: 'Contact',
-    links: [
-      { label: '(415) 555-0142',          href: 'tel:+14155550142' },
-      { label: 'care@globaldialysis.org',  href: 'mailto:care@globaldialysis.org' },
-      { label: '2200 Bayfront Plaza',      href: '/contact' },
-      { label: 'San Francisco, CA',        href: '/contact' },
-    ],
-  },
-];
+import { SITE, FOOTER_COLUMNS } from '../data/site.js';
+
+const { contact } = SITE;
+
+const contactCol = {
+  title: 'Contact',
+  links: [
+    { label: contact.phone,                             href: `tel:${contact.phone.replace(/\s/g, '')}` },
+    { label: contact.email,                             href: `mailto:${contact.email}` },
+    { label: contact.address,                           href: '/contact' },
+    { label: `${contact.city}, ${contact.state} ${contact.zip}`, href: '/contact' },
+  ],
+};
+
+const allCols = [...FOOTER_COLUMNS, contactCol];
 ---
 <footer class="bg-brand-deep text-white/80 px-6 pt-16 pb-8 md:px-24">
   <div class="max-w-[1248px] mx-auto grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1fr] gap-8">
@@ -46,17 +32,17 @@ const cols = [
           <path d="M18 8 C 24 14, 26 20, 18 26 C 10 20, 12 14, 18 8 Z" fill="rgba(255,255,255,0.95)"/>
         </svg>
         <div>
-          <div class="text-white font-display font-bold text-[15px]">Global Dialysis</div>
+          <div class="text-white font-display font-bold text-[15px]">{SITE.shortName}</div>
           <div class="text-white/60 text-xs">Care Center</div>
         </div>
       </a>
       <p class="text-[13.5px] leading-[1.55] text-white/70 max-w-[320px]">
-        Compassionate, patient-centered renal care for our community since 2008.
+        {SITE.description}
       </p>
     </div>
 
     <!-- Link columns -->
-    {cols.map(col => (
+    {allCols.map(col => (
       <div>
         <div class="text-white text-xs font-semibold tracking-[0.06em] uppercase mb-3.5">{col.title}</div>
         <ul class="list-none p-0 m-0 flex flex-col gap-2 text-[13.5px]">
@@ -73,7 +59,7 @@ const cols = [
   </div>
 
   <div class="max-w-[1248px] mx-auto mt-10 pt-6 border-t border-white/10 flex flex-wrap justify-between gap-4 text-xs text-white/55">
-    <span>© 2026 Global Dialysis Care Center</span>
+    <span>© 2026 {SITE.name} · {contact.city}, {contact.state}</span>
     <span>Privacy · Accessibility · HIPAA Notice</span>
   </div>
 </footer>

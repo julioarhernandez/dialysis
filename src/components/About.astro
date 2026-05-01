@@ -1,4 +1,5 @@
 ---
+import { ABOUT_PARAGRAPHS, ABOUT_CARDS } from '../data/about.js';
 ---
 <section id="about" class="py-[88px] px-6 md:px-24 bg-white">
   <div class="max-w-[1248px] mx-auto grid grid-cols-1 md:grid-cols-[0.8fr_1.2fr] gap-8 md:gap-20 items-start">
@@ -7,50 +8,28 @@
     <div>
       <div class="font-mono text-[11px] text-brand tracking-[0.16em] uppercase mb-4">01 — About us</div>
       <h2 class="font-display font-medium text-[38px] leading-[1.1] tracking-[-0.022em] text-ink m-0 max-w-[540px]" style="text-wrap:pretty;">
-        Patients are treated as individuals, not just conditions.
+        Happiness begins with good health.
       </h2>
     </div>
 
     <!-- Right: body -->
     <div>
-      <p class="text-base md:text-[18px] leading-[1.6] text-muted mb-5">
-        For nearly two decades, Global Dialysis Care Center has served families
-        navigating chronic kidney disease — combining clinical excellence with
-        a deeply human approach that places each patient's life, schedule,
-        and family at the center of treatment.
-      </p>
-      <p class="text-base md:text-[18px] leading-[1.6] text-muted mb-7">
-        Our nephrologists, nurses, and support staff work as one team — meeting
-        you where you are and walking with you through every appointment, decision, and milestone.
-      </p>
+      {ABOUT_PARAGRAPHS.map(p => (
+        <p class="text-base md:text-[18px] leading-[1.6] text-muted mb-5 last:mb-7">{p}</p>
+      ))}
 
       <div class="flex flex-wrap gap-4">
-        <!-- Mini card: team -->
-        <div class="flex items-start gap-3.5 p-4 rounded-[14px] bg-white border border-hair flex-[1_1_240px]">
-          <div class="w-[38px] h-[38px] rounded-[10px] bg-tint flex items-center justify-center flex-shrink-0 text-brand">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="9" cy="9" r="3"/><circle cx="17" cy="11" r="2.5"/>
-              <path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><path d="M14 19c.5-2 2.5-3.5 5-3.5"/>
-            </svg>
+        {ABOUT_CARDS.map(card => (
+          <div class="flex items-start gap-3.5 p-4 rounded-[14px] bg-white border border-hair flex-[1_1_240px]">
+            <div class="w-[38px] h-[38px] rounded-[10px] bg-tint flex items-center justify-center flex-shrink-0 text-brand">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={card.icon}/>
+            </div>
+            <div>
+              <div class="font-semibold text-sm text-ink">{card.title}</div>
+              <div class="text-[12.5px] text-muted mt-0.5">{card.sub}</div>
+            </div>
           </div>
-          <div>
-            <div class="font-semibold text-sm text-ink">Multidisciplinary team</div>
-            <div class="text-[12.5px] text-muted mt-0.5">Nephrology · Nursing · Nutrition · Social work</div>
-          </div>
-        </div>
-
-        <!-- Mini card: shield -->
-        <div class="flex items-start gap-3.5 p-4 rounded-[14px] bg-white border border-hair flex-[1_1_240px]">
-          <div class="w-[38px] h-[38px] rounded-[10px] bg-tint flex items-center justify-center flex-shrink-0 text-brand">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/>
-            </svg>
-          </div>
-          <div>
-            <div class="font-semibold text-sm text-ink">Patient-first philosophy</div>
-            <div class="text-[12.5px] text-muted mt-0.5">Care plans built collaboratively, not prescribed</div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
 

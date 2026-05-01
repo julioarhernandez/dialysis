@@ -1,5 +1,5 @@
 ---
-const plans = ['Medicare', 'Medicaid', 'Blue Cross Blue Shield', 'Aetna', 'Cigna', 'UnitedHealthcare', 'Humana', 'Kaiser'];
+import { INSURANCE_PLANS } from '../data/site.js';
 ---
 <section id="insurance" class="py-[88px] px-6 md:px-24 bg-white">
   <div class="max-w-[1248px] mx-auto">
@@ -24,7 +24,7 @@ const plans = ['Medicare', 'Medicaid', 'Blue Cross Blue Shield', 'Aetna', 'Cigna
 
         <!-- Right: plan grid -->
         <div class="grid grid-cols-2 gap-2.5">
-          {plans.map(plan => (
+          {INSURANCE_PLANS.map(plan => (
             <div class="rounded-[12px] px-4 py-3.5 text-sm font-medium flex items-center gap-2.5" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);">
               <span class="w-1.5 h-1.5 rounded-full bg-aqua flex-shrink-0"></span>
               {plan}

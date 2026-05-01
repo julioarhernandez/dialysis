@@ -1,30 +1,5 @@
 ---
-const faqs = [
-  {
-    q: 'How long does a typical dialysis session last?',
-    a: 'In-center hemodialysis sessions usually run 3–4 hours, three times per week. Home and peritoneal options offer more flexible scheduling tailored to your routine.',
-  },
-  {
-    q: 'What should I expect at my first visit?',
-    a: "You'll meet your care team, review your medical history, and tour the clinic. We'll walk you through every option without pressure — and you'll leave with a written care plan.",
-  },
-  {
-    q: 'Is home dialysis safe to perform on my own?',
-    a: 'Yes. Patients receive thorough training before starting, and a dedicated nurse remains available 24/7 throughout the program for questions and support.',
-  },
-  {
-    q: 'Will my insurance cover treatment?',
-    a: 'Most major insurance plans, Medicare, and Medicaid cover dialysis. Our team will verify your specific coverage and explain any out-of-pocket costs before treatment begins.',
-  },
-  {
-    q: 'Can family members be involved in care?',
-    a: 'Absolutely. We encourage family participation in education sessions, and offer dedicated support resources for caregivers and loved ones.',
-  },
-  {
-    q: 'How do I know which type of dialysis is right for me?',
-    a: 'Your nephrologist and care team will discuss your medical needs and lifestyle to recommend the best fit. The choice is collaborative, and many patients try more than one option.',
-  },
-];
+import { FAQ_ITEMS } from '../data/faq.js';
 ---
 <section class="py-[88px] px-6 md:px-24 bg-tint">
   <div class="max-w-[1248px] mx-auto grid grid-cols-1 md:grid-cols-[0.9fr_1.4fr] gap-8 md:gap-20 items-start">
@@ -50,17 +25,12 @@ const faqs = [
 
     <!-- Right: accordion -->
     <div class="bg-white rounded-[20px] border border-hair overflow-hidden" id="faq-accordion">
-      {faqs.map((faq, i) => (
+      {FAQ_ITEMS.map((faq, i) => (
         <div class="faq-item" class:list={[i !== 0 && 'border-t border-hair']}>
-          <button
-            class="faq-btn w-full flex items-center justify-between gap-4 px-[26px] py-[22px] text-left cursor-pointer bg-transparent border-none"
-            aria-expanded="false"
-          >
+          <button class="faq-btn w-full flex items-center justify-between gap-4 px-[26px] py-[22px] text-left cursor-pointer bg-transparent border-none" aria-expanded="false">
             <span class="font-display font-medium text-[16.5px] text-ink tracking-[-0.01em]">{faq.q}</span>
             <span class="faq-icon w-[30px] h-[30px] rounded-full bg-tint text-brand flex items-center justify-center flex-shrink-0 transition-all duration-200">
-              <!-- Plus icon (default) -->
               <svg class="icon-plus" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-              <!-- Minus icon (open) -->
               <svg class="icon-minus hidden" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg>
             </span>
           </button>
@@ -77,26 +47,23 @@ const faqs = [
 <script>
   const items = document.querySelectorAll('#faq-accordion .faq-item');
   items.forEach(item => {
-    const btn = item.querySelector('.faq-btn') as HTMLButtonElement;
-    const answer = item.querySelector('.faq-answer') as HTMLElement;
-    const icon = item.querySelector('.faq-icon') as HTMLElement;
-    const plusIcon = item.querySelector('.icon-plus') as HTMLElement;
-    const minusIcon = item.querySelector('.icon-minus') as HTMLElement;
+    const btn = item.querySelector('.faq-btn');
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.faq-icon');
+    const plusIcon = item.querySelector('.icon-plus');
+    const minusIcon = item.querySelector('.icon-minus');
 
     btn.addEventListener('click', () => {
       const isOpen = !answer.classList.contains('hidden');
-
-      // Close all
       items.forEach(it => {
-        (it.querySelector('.faq-answer') as HTMLElement).classList.add('hidden');
-        const ic = it.querySelector('.faq-icon') as HTMLElement;
+        it.querySelector('.faq-answer').classList.add('hidden');
+        const ic = it.querySelector('.faq-icon');
         ic.style.background = '';
         ic.style.color = '';
-        (it.querySelector('.icon-plus') as HTMLElement).classList.remove('hidden');
-        (it.querySelector('.icon-minus') as HTMLElement).classList.add('hidden');
-        (it.querySelector('.faq-btn') as HTMLButtonElement).setAttribute('aria-expanded', 'false');
+        it.querySelector('.icon-plus').classList.remove('hidden');
+        it.querySelector('.icon-minus').classList.add('hidden');
+        it.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
       });
-
       if (!isOpen) {
         answer.classList.remove('hidden');
         icon.style.background = '#0e4d7a';

@@ -1,4 +1,7 @@
 ---
+import { SITE } from '../data/site.js';
+
+const { contact } = SITE;
 ---
 <section class="relative overflow-hidden border-b border-hair text-white py-14 px-6 md:pt-[112px] md:px-24 md:pb-[120px]">
 
@@ -22,10 +25,10 @@
     <div class="flex justify-between items-baseline flex-wrap gap-4 mb-12">
       <span class="font-mono text-[11px] text-aqua tracking-[0.18em] uppercase inline-flex items-center gap-2.5">
         <span class="inline-block w-6 h-px bg-aqua opacity-60"></span>
-        Renal care · Est. 2008
+        Renal care · {contact.city}, {contact.state}
       </span>
       <span class="font-mono text-[11px] text-white/70 tracking-[0.14em] uppercase">
-        San Francisco · Bayfront Plaza
+        {contact.address}
       </span>
     </div>
 
@@ -39,8 +42,7 @@
     <!-- Bottom strip -->
     <div class="mt-10 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-14 items-end pt-8 border-t border-white/[0.18]">
       <p class="text-base md:text-[18px] text-white/85 leading-[1.55] max-w-[380px] m-0">
-        Personalized dialysis treatment delivered with warmth, expertise,
-        and steady support — every step of the journey.
+        {SITE.description}
       </p>
       <div class="flex flex-col gap-3.5">
         <span class="font-mono text-[11px] text-aqua tracking-[0.12em] uppercase">Three pillars</span>
