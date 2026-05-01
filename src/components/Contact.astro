@@ -142,89 +142,91 @@ const { contact, web3formsKey } = SITE;
 </section>
 
 <script>
-  const form       = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn  = document.getElementById('submit-btn')   as HTMLButtonElement;
-  const btnLabel   = document.getElementById('btn-label')    as HTMLElement;
-  const btnSpinner = document.getElementById('btn-spinner')  as HTMLElement;
-  const btnArrow   = document.getElementById('btn-arrow')    as HTMLElement;
-  const formError  = document.getElementById('form-error')   as HTMLElement;
-  const formSuccess = document.getElementById('form-success') as HTMLElement;
+  document.addEventListener('astro:page-load', () => {
+    const form       = document.getElementById('contact-form') as HTMLFormElement;
+    const submitBtn  = document.getElementById('submit-btn')   as HTMLButtonElement;
+    const btnLabel   = document.getElementById('btn-label')    as HTMLElement;
+    const btnSpinner = document.getElementById('btn-spinner')  as HTMLElement;
+    const btnArrow   = document.getElementById('btn-arrow')    as HTMLElement;
+    const formError  = document.getElementById('form-error')   as HTMLElement;
+    const formSuccess = document.getElementById('form-success') as HTMLElement;
 
-  // Record when the page loaded — used for the timing trap below.
-  const PAGE_LOAD_TIME = Date.now();
+    // Record when the page loaded — used for the timing trap below.
+    const PAGE_LOAD_TIME = Date.now();
 
-  // URL pattern: catches http://, https://, and bare www. links.
-  const URL_PATTERN = /(https?:\/\/|www\.)\S+/i;
+    // URL pattern: catches http://, https://, and bare www. links.
+    const URL_PATTERN = /(https?:\/\/|www\.)\S+/i;
 
-  // Silently show the success screen without submitting.
-  // Bots see a "success" and move on — we give them no signal that they were caught.
-  function silentFail() {
-    form.classList.add('hidden');
-    formSuccess.classList.remove('hidden');
-  }
-
-  function showError(msg: string) {
-    formError.textContent = msg;
-    formError.classList.remove('hidden');
-    submitBtn.disabled = false;
-    btnLabel.textContent = 'Schedule a consultation';
-    btnSpinner.classList.add('hidden');
-    btnArrow.classList.remove('hidden');
-  }
-
-  function setLoading() {
-    formError.classList.add('hidden');
-    submitBtn.disabled = true;
-    btnLabel.textContent = 'Sending…';
-    btnSpinner.classList.remove('hidden');
-    btnArrow.classList.add('hidden');
-  }
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    setLoading();
-
-    // ── Trap 1: timing ────────────────────────────────────────
-    // Real humans take at least a few seconds to fill a form.
-    // Anything under 3 s is almost certainly a bot.
-    if (Date.now() - PAGE_LOAD_TIME < 3000) {
-      silentFail();
-      return;
+    // Silently show the success screen without submitting.
+    // Bots see a "success" and move on — we give them no signal that they were caught.
+    function silentFail() {
+      form.classList.add('hidden');
+      formSuccess.classList.remove('hidden');
     }
 
-    // ── Trap 2: CSS honeypot fields ───────────────────────────
-    // These inputs are visually off-screen; only bots fill them.
-    const websiteField = (form.querySelector('[name="website"]') as HTMLInputElement)?.value;
-    const companyField = (form.querySelector('[name="company"]') as HTMLInputElement)?.value;
-    if (websiteField || companyField) {
-      silentFail();
-      return;
+    function showError(msg: string) {
+      formError.textContent = msg;
+      formError.classList.remove('hidden');
+      submitBtn.disabled = false;
+      btnLabel.textContent = 'Schedule a consultation';
+      btnSpinner.classList.add('hidden');
+      btnArrow.classList.remove('hidden');
     }
 
-    // ── Guard: URL in message ─────────────────────────────────
-    // Spam almost always contains links. Real patients don't paste URLs.
-    const message = (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value ?? '';
-    if (URL_PATTERN.test(message)) {
-      showError('Please remove any links from your message — we accept plain text only.');
-      return;
+    function setLoading() {
+      formError.classList.add('hidden');
+      submitBtn.disabled = true;
+      btnLabel.textContent = 'Sending…';
+      btnSpinner.classList.remove('hidden');
+      btnArrow.classList.add('hidden');
     }
 
-    // ── Submit to Web3Forms ───────────────────────────────────
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: new FormData(form),
-      });
-      const data = await res.json();
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      setLoading();
 
-      if (data.success) {
-        form.classList.add('hidden');
-        formSuccess.classList.remove('hidden');
-      } else {
-        throw new Error(data.message || 'Submission failed.');
+      // ── Trap 1: timing ────────────────────────────────────────
+      // Real humans take at least a few seconds to fill a form.
+      // Anything under 3 s is almost certainly a bot.
+      if (Date.now() - PAGE_LOAD_TIME < 3000) {
+        silentFail();
+        return;
       }
-    } catch (err) {
-      showError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
-    }
+
+      // ── Trap 2: CSS honeypot fields ───────────────────────────
+      // These inputs are visually off-screen; only bots fill them.
+      const websiteField = (form.querySelector('[name="website"]') as HTMLInputElement)?.value;
+      const companyField = (form.querySelector('[name="company"]') as HTMLInputElement)?.value;
+      if (websiteField || companyField) {
+        silentFail();
+        return;
+      }
+
+      // ── Guard: URL in message ─────────────────────────────────
+      // Spam almost always contains links. Real patients don't paste URLs.
+      const message = (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value ?? '';
+      if (URL_PATTERN.test(message)) {
+        showError('Please remove any links from your message — we accept plain text only.');
+        return;
+      }
+
+      // ── Submit to Web3Forms ───────────────────────────────────
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          form.classList.add('hidden');
+          formSuccess.classList.remove('hidden');
+        } else {
+          throw new Error(data.message || 'Submission failed.');
+        }
+      } catch (err) {
+        showError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      }
+    });
   });
 </script>

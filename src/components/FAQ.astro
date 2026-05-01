@@ -45,33 +45,35 @@ import { FAQ_ITEMS } from '../data/faq.js';
 </section>
 
 <script>
-  const items = document.querySelectorAll('#faq-accordion .faq-item');
-  items.forEach(item => {
-    const btn = item.querySelector('.faq-btn');
-    const answer = item.querySelector('.faq-answer');
-    const icon = item.querySelector('.faq-icon');
-    const plusIcon = item.querySelector('.icon-plus');
-    const minusIcon = item.querySelector('.icon-minus');
+  document.addEventListener('astro:page-load', () => {
+    const items = document.querySelectorAll('#faq-accordion .faq-item');
+    items.forEach(item => {
+      const btn = item.querySelector('.faq-btn');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      const plusIcon = item.querySelector('.icon-plus');
+      const minusIcon = item.querySelector('.icon-minus');
 
-    btn.addEventListener('click', () => {
-      const isOpen = !answer.classList.contains('hidden');
-      items.forEach(it => {
-        it.querySelector('.faq-answer').classList.add('hidden');
-        const ic = it.querySelector('.faq-icon');
-        ic.style.background = '';
-        ic.style.color = '';
-        it.querySelector('.icon-plus').classList.remove('hidden');
-        it.querySelector('.icon-minus').classList.add('hidden');
-        it.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', () => {
+        const isOpen = !answer.classList.contains('hidden');
+        items.forEach(it => {
+          it.querySelector('.faq-answer').classList.add('hidden');
+          const ic = it.querySelector('.faq-icon');
+          ic.style.background = '';
+          ic.style.color = '';
+          it.querySelector('.icon-plus').classList.remove('hidden');
+          it.querySelector('.icon-minus').classList.add('hidden');
+          it.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          answer.classList.remove('hidden');
+          icon.style.background = '#0e4d7a';
+          icon.style.color = '#fff';
+          plusIcon.classList.add('hidden');
+          minusIcon.classList.remove('hidden');
+          btn.setAttribute('aria-expanded', 'true');
+        }
       });
-      if (!isOpen) {
-        answer.classList.remove('hidden');
-        icon.style.background = '#0e4d7a';
-        icon.style.color = '#fff';
-        plusIcon.classList.add('hidden');
-        minusIcon.classList.remove('hidden');
-        btn.setAttribute('aria-expanded', 'true');
-      }
     });
   });
 </script>
