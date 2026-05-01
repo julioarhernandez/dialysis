@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../data/site.js';
+
+const { contact } = SITE;
+---
+<Layout
+  title={`HIPAA Notice of Privacy Practices — ${SITE.name}`}
+  description="Your rights regarding your protected health information and how Global Dialysis Care Center may use and disclose it."
+>
+
+  <!-- Page header -->
+  <div class="bg-brand-deep text-white px-6 py-16 md:px-24">
+    <div class="max-w-[1248px] mx-auto">
+      <div class="font-mono text-[11px] text-aqua tracking-[0.16em] uppercase mb-4">Legal</div>
+      <h1 class="font-display font-medium text-[42px] leading-[1.05] tracking-[-0.03em] text-white m-0">
+        Notice of Privacy Practices
+      </h1>
+      <p class="mt-3 text-white/70 text-[15px] max-w-[620px]">
+        This notice describes how medical information about you may be used and disclosed and how you can get access to this information. <strong class="text-white">Please review it carefully.</strong>
+      </p>
+      <p class="mt-2 text-white/55 text-[13px]">Effective date: January 1, 2026</p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="px-6 py-16 md:px-24 bg-white">
+    <div class="max-w-[760px] mx-auto prose-legal">
+
+      <div class="bg-tint border border-hair rounded-[12px] p-5 mb-8 text-[14px] text-ink leading-[1.6]">
+        <strong>Our Commitment to Your Privacy:</strong> {SITE.name} is required by law to maintain the privacy of your protected health information (PHI), to provide you with this notice of our legal duties and privacy practices, and to notify you in the event of a breach of your unsecured PHI. We are required to abide by the terms of this notice while it is in effect.
+      </div>
+
+      <h2>What Is Protected Health Information (PHI)?</h2>
+      <p>PHI is individually identifiable health information we create, receive, maintain, or transmit in connection with providing health care services. This includes information about your health condition, treatment, or payment for care that could reasonably identify you.</p>
+
+      <h2>How We May Use and Disclose Your PHI</h2>
+
+      <h3>Treatment</h3>
+      <p>We may use and share your PHI to provide, coordinate, or manage your health care. For example, we may share information with physicians who refer you to us or with specialists involved in your renal care.</p>
+
+      <h3>Payment</h3>
+      <p>We may use and share your PHI to bill and collect payment for the services we provide. For example, we may submit claims to Medicare, Medicaid, or your private insurer and share information needed to process those claims.</p>
+
+      <h3>Health Care Operations</h3>
+      <p>We may use and share your PHI for our internal operations, including quality assessment, compliance activities, staff training, and accreditation reviews.</p>
+
+      <h3>Other Permitted Uses and Disclosures</h3>
+      <p>We may also use or disclose your PHI without your authorization in the following situations permitted by law:</p>
+      <ul>
+        <li>As required by federal, state, or local law</li>
+        <li>For public health activities (e.g., reporting communicable diseases)</li>
+        <li>To report suspected abuse, neglect, or domestic violence to authorized authorities</li>
+        <li>For health oversight activities (audits, inspections, licensure) by government agencies</li>
+        <li>In response to a court order, subpoena, or other legal process</li>
+        <li>To law enforcement under limited circumstances permitted by law</li>
+        <li>To avoid a serious threat to the health or safety of a person or the public</li>
+        <li>For research approved by an institutional review board with appropriate safeguards</li>
+        <li>For workers' compensation or similar programs</li>
+        <li>To organ procurement organizations, if applicable</li>
+        <li>To the U.S. Department of Health &amp; Human Services for compliance enforcement</li>
+      </ul>
+
+      <h3>Uses Requiring Your Authorization</h3>
+      <p>For any use or disclosure of your PHI not described above, we will ask for your written authorization. You may revoke that authorization at any time in writing; however, the revocation will not apply to disclosures already made in reliance on your prior authorization.</p>
+
+      <h2>Your Rights Regarding Your PHI</h2>
+
+      <h3>Right to Access</h3>
+      <p>You have the right to inspect and obtain a copy of your medical records and billing records. We may charge a reasonable cost-based fee. To request access, submit a written request to our Privacy Officer.</p>
+
+      <h3>Right to Request Corrections (Amendment)</h3>
+      <p>If you believe your PHI is incorrect or incomplete, you may request that we amend it. We may deny your request under certain circumstances and will explain why in writing.</p>
+
+      <h3>Right to an Accounting of Disclosures</h3>
+      <p>You have the right to request a list of certain disclosures we have made of your PHI. This does not include disclosures made for treatment, payment, or health care operations.</p>
+
+      <h3>Right to Request Restrictions</h3>
+      <p>You have the right to request restrictions on how we use or disclose your PHI. We are not required to agree to most restrictions; however, we must agree if you ask us not to disclose PHI to your health insurer for services you paid for out-of-pocket in full.</p>
+
+      <h3>Right to Confidential Communications</h3>
+      <p>You have the right to request that we communicate with you in a specific way or at a specific location (for example, at work rather than at home). We will accommodate reasonable requests.</p>
+
+      <h3>Right to a Paper Copy of This Notice</h3>
+      <p>You have the right to a paper copy of this notice at any time, even if you have agreed to receive it electronically. Contact our office to request one.</p>
+
+      <h3>Right to Be Notified of a Breach</h3>
+      <p>You have the right to receive notification if there is a breach of your unsecured PHI.</p>
+
+      <h2>Our Duties</h2>
+      <p>We are required by law to maintain the privacy of your PHI and to provide you with this notice. We are required to abide by the terms of the notice currently in effect. We reserve the right to change the terms of this notice and to make the new notice applicable to all PHI we maintain. We will post the revised notice on this website and make paper copies available at our facility.</p>
+
+      <h2>How to Exercise Your Rights or File a Complaint</h2>
+      <p>To exercise any of the rights described above, or if you believe your privacy rights have been violated, contact our Privacy Officer:</p>
+
+      <address class="not-italic text-[15px] text-ink">
+        <strong>Privacy Officer — {SITE.name}</strong><br/>
+        {contact.address}<br/>
+        {contact.city}, {contact.state} {contact.zip}<br/>
+        <a href={`mailto:${contact.email}`} class="text-brand no-underline hover:underline">{contact.email}</a><br/>
+        <a href={`tel:${contact.phone.replace(/\s/g, '')}`} class="text-brand no-underline hover:underline">{contact.phone}</a>
+      </address>
+
+      <p class="mt-5">You also have the right to file a complaint with the <strong>U.S. Department of Health &amp; Human Services, Office for Civil Rights</strong>:</p>
+      <ul>
+        <li>Online: <a href="https://www.hhs.gov/ocr/privacy/hipaa/complaints" class="text-brand no-underline hover:underline">hhs.gov/ocr/privacy/hipaa/complaints</a></li>
+        <li>Phone: 1-800-368-1019 (TDD: 1-800-537-7697)</li>
+        <li>Mail: 200 Independence Ave., S.W., Washington, D.C. 20201</li>
+      </ul>
+      <p>We will not retaliate against you for filing a complaint.</p>
+
+    </div>
+  </div>
+
+</Layout>
+
+<style>
+  .prose-legal {
+    color: #374151;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+  .prose-legal h2 {
+    font-family: var(--font-display, 'Newsreader', serif);
+    font-weight: 500;
+    font-size: 22px;
+    color: #0a1a2c;
+    margin-top: 2.6rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.015em;
+  }
+  .prose-legal h3 {
+    font-family: var(--font-display, 'Newsreader', serif);
+    font-weight: 500;
+    font-size: 17px;
+    color: #0e4d7a;
+    margin-top: 1.6rem;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.01em;
+  }
+  .prose-legal p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  .prose-legal ul {
+    margin: 0 0 1rem 0;
+    padding-left: 1.4rem;
+  }
+  .prose-legal li {
+    margin-bottom: 0.4rem;
+  }
+  .prose-legal strong {
+    color: #0a1a2c;
+    font-weight: 600;
+  }
+  .prose-legal address {
+    background: #f0f6fa;
+    border-left: 3px solid #0e4d7a;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 1.5rem;
+  }
+</style>

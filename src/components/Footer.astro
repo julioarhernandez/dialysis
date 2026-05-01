@@ -60,6 +60,10 @@ const allCols = [...FOOTER_COLUMNS, contactCol];
 
   <div class="max-w-[1248px] mx-auto mt-10 pt-6 border-t border-white/10 flex flex-wrap justify-between gap-4 text-xs text-white/55">
     <span>© 2026 {SITE.name} · {contact.city}, {contact.state}</span>
-    <span>Privacy · Accessibility · HIPAA Notice</span>
+    <span class="flex flex-wrap gap-x-4 gap-y-1">
+      <a href="/privacy" class="text-white/55 no-underline hover:text-white transition-colors">Privacy Policy</a>
+      <a href="/accessibility" class="text-white/55 no-underline hover:text-white transition-colors">Accessibility</a>
+      <a href="/hipaa" class="text-white/55 no-underline hover:text-white transition-colors">HIPAA Notice</a>
+    </span>
   </div>
 </footer>

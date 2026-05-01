@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../data/site.js';
+
+const { contact } = SITE;
+---
+<Layout
+  title={`Accessibility Statement — ${SITE.name}`}
+  description="Our commitment to making this website accessible to everyone, including people with disabilities."
+>
+
+  <!-- Page header -->
+  <div class="bg-brand-deep text-white px-6 py-16 md:px-24">
+    <div class="max-w-[1248px] mx-auto">
+      <div class="font-mono text-[11px] text-aqua tracking-[0.16em] uppercase mb-4">Legal</div>
+      <h1 class="font-display font-medium text-[42px] leading-[1.05] tracking-[-0.03em] text-white m-0">
+        Accessibility Statement
+      </h1>
+      <p class="mt-3 text-white/70 text-[15px]">Last updated: January 1, 2026</p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="px-6 py-16 md:px-24 bg-white">
+    <div class="max-w-[760px] mx-auto prose-legal">
+
+      <p>{SITE.name} is committed to ensuring this website is accessible to everyone, including people with disabilities. We continually work to improve the user experience for all visitors and apply relevant accessibility standards.</p>
+
+      <h2>Our Accessibility Goal</h2>
+      <p>We aim to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</strong> published by the World Wide Web Consortium (W3C). These guidelines explain how to make web content more accessible to people with disabilities including visual, auditory, physical, speech, cognitive, and neurological impairments.</p>
+
+      <h2>Measures We Take</h2>
+      <ul>
+        <li>All images include descriptive <code>alt</code> text or are marked decorative with <code>aria-hidden="true"</code>.</li>
+        <li>Interactive elements (buttons, links, form fields) are keyboard-navigable and include accessible labels.</li>
+        <li>Color contrast ratios meet or exceed the WCAG 2.1 AA minimum of 4.5:1 for normal text.</li>
+        <li>Form fields use associated <code>&lt;label&gt;</code> elements and descriptive placeholder text.</li>
+        <li>Page structure uses semantic HTML landmarks (<code>nav</code>, <code>main</code>, <code>section</code>, <code>footer</code>) to aid screen reader navigation.</li>
+        <li>The FAQ accordion uses <code>aria-expanded</code> to communicate state to assistive technologies.</li>
+        <li>The site is fully navigable without a mouse using Tab, Enter, and Space keys.</li>
+      </ul>
+
+      <h2>Known Limitations</h2>
+      <p>While we strive for full WCAG 2.1 AA conformance, some older content or third-party components may not yet fully meet all criteria. We are actively working to identify and address any gaps.</p>
+
+      <h2>Assistive Technologies</h2>
+      <p>This website has been tested for compatibility with common assistive technologies including:</p>
+      <ul>
+        <li>Screen readers: NVDA (Windows), VoiceOver (macOS / iOS)</li>
+        <li>Keyboard-only navigation</li>
+        <li>Browser zoom up to 200%</li>
+      </ul>
+
+      <h2>Feedback and Contact</h2>
+      <p>If you experience any difficulty accessing content on this website, or if you have suggestions for improving accessibility, please contact us. We take all feedback seriously and aim to respond within 2 business days.</p>
+
+      <address class="not-italic mt-2 text-[15px] text-ink">
+        <strong>{SITE.name}</strong><br/>
+        {contact.address}<br/>
+        {contact.city}, {contact.state} {contact.zip}<br/>
+        <a href={`mailto:${contact.email}`} class="text-brand no-underline hover:underline">{contact.email}</a><br/>
+        <a href={`tel:${contact.phone.replace(/\s/g, '')}`} class="text-brand no-underline hover:underline">{contact.phone}</a>
+      </address>
+
+      <h2>Formal Complaints</h2>
+      <p>If you are not satisfied with our response to your accessibility concern, you may contact the <strong>U.S. Department of Health &amp; Human Services Office for Civil Rights</strong> at <a href="https://www.hhs.gov/ocr" class="text-brand no-underline hover:underline">hhs.gov/ocr</a> or by calling 1-800-368-1019.</p>
+
+    </div>
+  </div>
+
+</Layout>
+
+<style>
+  .prose-legal {
+    color: #374151;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+  .prose-legal h2 {
+    font-family: var(--font-display, 'Newsreader', serif);
+    font-weight: 500;
+    font-size: 21px;
+    color: #0a1a2c;
+    margin-top: 2.4rem;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.015em;
+  }
+  .prose-legal p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  .prose-legal ul {
+    margin: 0 0 1rem 0;
+    padding-left: 1.4rem;
+  }
+  .prose-legal li {
+    margin-bottom: 0.4rem;
+  }
+  .prose-legal strong {
+    color: #0a1a2c;
+    font-weight: 600;
+  }
+  .prose-legal code {
+    background: #f0f6fa;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    color: #0e4d7a;
+  }
+  .prose-legal address {
+    background: #f0f6fa;
+    border-left: 3px solid #0e4d7a;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 1.5rem;
+  }
+</style>
