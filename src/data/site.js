@@ -8,6 +8,8 @@ export const SITE = {
   tagline: 'Happiness begins with good health.',
   description:
     'Providing exceptional care and support to patients and their families through advanced, patient-centered dialysis treatments.',
+  // Get your free key at https://web3forms.com
+  web3formsKey: 'a2da21fb-cf4a-45c5-9929-61545482ca11',
   contact: {
     phone: '000 111 222',
     email: 'support@globaldialysiscare.com',
