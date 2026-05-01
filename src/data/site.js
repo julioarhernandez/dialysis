@@ -19,6 +19,7 @@ export const SITE = {
     zip: '33056',
     hours: 'Mon, Wed, Fri · 8AM – 4PM',
   },
+  navAction: 'Contact',
 };
 
 // ─── Primary navigation ────────────────────────────────────────
