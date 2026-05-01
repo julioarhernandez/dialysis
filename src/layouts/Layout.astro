@@ -22,6 +22,11 @@ const {
       href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    {Astro.url.pathname === '/' && (
+      <link rel="preload" as="image" href="/images/hero.jpg" fetchpriority="high" />
+    )}
+
     <ViewTransitions />
   </head>
   <body>
