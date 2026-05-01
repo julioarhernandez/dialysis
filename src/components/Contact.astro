@@ -68,8 +68,18 @@ const { contact, web3formsKey } = SITE;
       <input type="hidden" name="access_key" value={web3formsKey} />
       <input type="hidden" name="subject" value="New consultation request — Global Dialysis Care Center" />
       <input type="hidden" name="from_name" value="Global Dialysis Care Center Website" />
-      <!-- Honeypot spam protection -->
-      <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
+      <!-- Web3Forms built-in honeypot -->
+      <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" aria-hidden="true" />
+
+      <!--
+        Off-screen CSS honeypots — positioned out of view so real users never see them.
+        Bots crawl the DOM and fill any input regardless of visual position.
+        Do NOT use display:none — sophisticated bots skip those on purpose.
+      -->
+      <div aria-hidden="true" style="position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;pointer-events:none;tab-index:-1;">
+        <label>Leave blank <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        <label>Leave blank <input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
         <label class="flex flex-col gap-1.5">
@@ -132,24 +142,74 @@ const { contact, web3formsKey } = SITE;
 </section>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-  const btnLabel = document.getElementById('btn-label') as HTMLElement;
-  const btnSpinner = document.getElementById('btn-spinner') as HTMLElement;
-  const btnArrow = document.getElementById('btn-arrow') as HTMLElement;
-  const formError = document.getElementById('form-error') as HTMLElement;
+  const form       = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn  = document.getElementById('submit-btn')   as HTMLButtonElement;
+  const btnLabel   = document.getElementById('btn-label')    as HTMLElement;
+  const btnSpinner = document.getElementById('btn-spinner')  as HTMLElement;
+  const btnArrow   = document.getElementById('btn-arrow')    as HTMLElement;
+  const formError  = document.getElementById('form-error')   as HTMLElement;
   const formSuccess = document.getElementById('form-success') as HTMLElement;
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    formError.classList.add('hidden');
+  // Record when the page loaded — used for the timing trap below.
+  const PAGE_LOAD_TIME = Date.now();
 
-    // Loading state
+  // URL pattern: catches http://, https://, and bare www. links.
+  const URL_PATTERN = /(https?:\/\/|www\.)\S+/i;
+
+  // Silently show the success screen without submitting.
+  // Bots see a "success" and move on — we give them no signal that they were caught.
+  function silentFail() {
+    form.classList.add('hidden');
+    formSuccess.classList.remove('hidden');
+  }
+
+  function showError(msg: string) {
+    formError.textContent = msg;
+    formError.classList.remove('hidden');
+    submitBtn.disabled = false;
+    btnLabel.textContent = 'Schedule a consultation';
+    btnSpinner.classList.add('hidden');
+    btnArrow.classList.remove('hidden');
+  }
+
+  function setLoading() {
+    formError.classList.add('hidden');
     submitBtn.disabled = true;
     btnLabel.textContent = 'Sending…';
     btnSpinner.classList.remove('hidden');
     btnArrow.classList.add('hidden');
+  }
 
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    setLoading();
+
+    // ── Trap 1: timing ────────────────────────────────────────
+    // Real humans take at least a few seconds to fill a form.
+    // Anything under 3 s is almost certainly a bot.
+    if (Date.now() - PAGE_LOAD_TIME < 3000) {
+      silentFail();
+      return;
+    }
+
+    // ── Trap 2: CSS honeypot fields ───────────────────────────
+    // These inputs are visually off-screen; only bots fill them.
+    const websiteField = (form.querySelector('[name="website"]') as HTMLInputElement)?.value;
+    const companyField = (form.querySelector('[name="company"]') as HTMLInputElement)?.value;
+    if (websiteField || companyField) {
+      silentFail();
+      return;
+    }
+
+    // ── Guard: URL in message ─────────────────────────────────
+    // Spam almost always contains links. Real patients don't paste URLs.
+    const message = (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value ?? '';
+    if (URL_PATTERN.test(message)) {
+      showError('Please remove any links from your message — we accept plain text only.');
+      return;
+    }
+
+    // ── Submit to Web3Forms ───────────────────────────────────
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -164,13 +224,7 @@ const { contact, web3formsKey } = SITE;
         throw new Error(data.message || 'Submission failed.');
       }
     } catch (err) {
-      formError.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
-      formError.classList.remove('hidden');
-      // Reset button
-      submitBtn.disabled = false;
-      btnLabel.textContent = 'Schedule a consultation';
-      btnSpinner.classList.add('hidden');
-      btnArrow.classList.remove('hidden');
+      showError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     }
   });
 </script>
