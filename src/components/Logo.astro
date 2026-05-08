@@ -1,0 +1,25 @@
+---
+interface Props {
+  className?: string;
+  width?: number;
+  variant?: 'default' | 'light';
+}
+
+const { 
+  className = "", 
+  width = 90, // Reducido un 50% respecto al original
+  variant = 'default' 
+} = Astro.props;
+
+// If variant is light, we apply a brightness filter to make it look white/light
+const style = variant === 'light' ? "filter: brightness(0) invert(1);" : "";
+---
+
+<img 
+  src="/images/logo.svg" 
+  width={width} 
+  height="auto" 
+  class={className} 
+  style={style}
+  alt="Global Dialysis Care Center Logo"
+/>

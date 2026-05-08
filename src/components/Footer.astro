@@ -1,5 +1,6 @@
 ---
 import { SITE, FOOTER_COLUMNS } from '../data/site.js';
+import Logo from './Logo.astro';
 
 const { contact } = SITE;
 
@@ -21,20 +22,7 @@ const allCols = [...FOOTER_COLUMNS, contactCol];
     <!-- Brand column -->
     <div>
       <a href="/" class="inline-flex items-center gap-2.5 no-underline mb-4">
-        <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
-          <defs>
-            <linearGradient id="footer-logo-grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#ffffff"/>
-              <stop offset="100%" stop-color="#3fbac0"/>
-            </linearGradient>
-          </defs>
-          <circle cx="18" cy="18" r="18" fill="url(#footer-logo-grad)"/>
-          <path d="M18 8 C 24 14, 26 20, 18 26 C 10 20, 12 14, 18 8 Z" fill="rgba(255,255,255,0.95)"/>
-        </svg>
-        <div>
-          <div class="text-white font-display font-bold text-[15px]">{SITE.shortName}</div>
-          <div class="text-white/60 text-xs">Care Center</div>
-        </div>
+        <Logo variant="light" />
       </a>
       <p class="text-[13.5px] leading-[1.55] text-white/70 max-w-[320px]">
         {SITE.description}

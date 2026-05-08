@@ -11,7 +11,7 @@ export const SITE = {
   // Get your free key at https://web3forms.com
   web3formsKey: 'a2da21fb-cf4a-45c5-9929-61545482ca11',
   contact: {
-    phone: '000 111 222',
+    phone: '(305) 315-4330',
     email: 'support@globaldialysiscare.com',
     address: '2710 NW 183rd St, Suite 200',
     city: 'Miami Gardens',
