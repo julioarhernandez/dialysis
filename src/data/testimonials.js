@@ -8,6 +8,7 @@ export const TESTIMONIALS = [
     role: 'Patient · 4 years',
     initials: 'M.R.',
     patId: 'pp-mr',
+    fileName: 'Marisol.png',
   },
   {
     quote: 'Home hemodialysis changed my life. The training and support gave me back my independence.',
@@ -15,6 +16,7 @@ export const TESTIMONIALS = [
     role: 'Patient · Home program',
     initials: 'D.A.',
     patId: 'pp-da',
+    fileName: 'David.png',
   },
   {
     quote: 'They explained every option without rushing. We chose peritoneal dialysis together as a family.',
@@ -22,5 +24,6 @@ export const TESTIMONIALS = [
     role: 'Patient · 2 years',
     initials: 'L.C.',
     patId: 'pp-lc',
+    fileName: 'LinChen.png',
   },
 ];

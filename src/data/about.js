@@ -2,8 +2,8 @@ import { icons } from './icons.js';
 
 // ─── About section ─────────────────────────────────────────────
 export const ABOUT_PARAGRAPHS = [
-  'Global Dialysis Care Center is committed to providing exceptional care and support to patients and their families — specializing in comprehensive renal care with advanced, patient-centered dialysis treatments that fit your life.',
-  'Our skilled healthcare professionals deliver world-class renal care services — from in-center hemodialysis to home dialysis programs — with round-the-clock emergency response capability and ongoing guidance every step of the way.',
+  'Global Dialysis Care Center is committed to providing exceptional care and support to patients and their families, specializing in comprehensive renal care with advanced, patient-centered dialysis treatments that fit your life.',
+  'Our skilled healthcare professionals deliver world-class renal care services, from in-center hemodialysis to home dialysis programs, with round-the-clock emergency response capability and ongoing guidance every step of the way.',
 ];
 
 export const ABOUT_CARDS = [
@@ -48,7 +48,7 @@ export const PATIENT_CARE_ITEMS = [
   {
     icon: icons.spark,
     title: 'Personalized care plans',
-    desc: 'Every patient receives a tailored treatment plan built collaboratively with their medical team — fitting their unique health needs and lifestyle.',
+    desc: 'Every patient receives a tailored treatment plan built collaboratively with their medical team, fitting their unique health needs and lifestyle.',
   },
   {
     icon: icons.team,

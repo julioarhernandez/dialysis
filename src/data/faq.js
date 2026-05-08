@@ -8,7 +8,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: 'What should I expect at my first visit?',
-    a: "You'll meet your care team, review your medical history, and tour the clinic. We'll walk you through every option without pressure — and you'll leave with a written care plan.",
+    a: "You'll meet your care team, review your medical history, and tour the clinic. We'll walk you through every option without pressure, and you'll leave with a written care plan.",
   },
   {
     q: 'Is home dialysis safe to perform on my own?',

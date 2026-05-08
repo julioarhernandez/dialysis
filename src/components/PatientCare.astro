@@ -11,23 +11,16 @@ import { PATIENT_CARE_ITEMS } from '../data/about.js';
         Support that extends far beyond the clinical setting.
       </h2>
       <p class="mt-4 text-[17px] text-muted leading-[1.5]">
-        "Patients are supported throughout their entire treatment journey — not just medically, but emotionally."
+        Patients are supported throughout their entire treatment journey, not just medically, but emotionally.
       </p>
 
-      <!-- Photo placeholder -->
-      <div class="mt-6 relative w-full rounded-[16px] overflow-hidden border border-hair" style="aspect-ratio:4/3;">
-        <svg viewBox="0 0 200 150" preserveAspectRatio="none" class="w-full h-full block" aria-hidden="true">
-          <defs>
-            <pattern id="pc-photo" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <rect width="8" height="8" fill="#e6eff5"/>
-              <line x1="0" y1="0" x2="0" y2="8" stroke="#0e4d7a" stroke-opacity="0.2" stroke-width="2"/>
-            </pattern>
-          </defs>
-          <rect width="200" height="150" fill="url(#pc-photo)"/>
-        </svg>
-        <div class="absolute inset-0 flex items-center justify-center font-mono text-[11px] text-brand opacity-70 tracking-[0.04em]">
-          care moment · placeholder
-        </div>
+      <!-- Photo -->
+      <div class="mt-6 w-full rounded-[16px] overflow-hidden border border-hair aspect-[4/3]">
+        <img 
+          src="/images/PatientCare.png" 
+          alt="Dialysis patient care and support" 
+          class="w-full h-full object-cover"
+        />
       </div>
     </div>
 

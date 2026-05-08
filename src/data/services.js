@@ -10,7 +10,7 @@ export const DIALYSIS_TREATMENTS = [
     illustration: 'monitor',
     icon: icons.pulse,
     title: 'Hemodialysis',
-    desc: 'Involves cleansing the blood by circulating it outside of the body through a machine equipped with a special filter — performed in our center with continuous medical supervision.',
+    desc: 'Involves cleansing the blood by circulating it outside of the body through a machine equipped with a special filter, performed in our center with continuous medical supervision.',
     bullets: [
       'Continuous medical supervision',
       'Advanced filtration technology',
@@ -22,7 +22,7 @@ export const DIALYSIS_TREATMENTS = [
     illustration: 'home',
     icon: icons.home,
     title: 'Home Dialysis',
-    desc: 'Comprehensive training for patients and caregivers, with continuous safety support for at-home treatment — giving you greater flexibility and independence.',
+    desc: 'Comprehensive training for patients and caregivers, with continuous safety support for at-home treatment, giving you greater flexibility and independence.',
     bullets: [
       'Comprehensive patient & caregiver training',
       'Continuous safety monitoring support',
@@ -34,7 +34,7 @@ export const DIALYSIS_TREATMENTS = [
     illustration: 'care',
     icon: icons.drop,
     title: 'Peritoneal Dialysis',
-    desc: "Uses the lining of your abdominal cavity (the peritoneum) and a cleaning solution (dialysate) to filter waste — performed at home for greater autonomy.",
+    desc: "Uses the lining of your abdominal cavity (the peritoneum) and a cleaning solution (dialysate) to filter waste, performed at home for greater autonomy.",
     bullets: [
       'Performed at home on your schedule',
       "Uses your body's natural peritoneum",
@@ -63,6 +63,6 @@ export const SUPPORT_SERVICES = [
   {
     icon: icons.call,
     title: 'Emergency Services',
-    desc: 'Round-the-clock emergency services with immediate care availability — rapid response, compassionate care, whenever you need it.',
+    desc: 'Round-the-clock emergency services with immediate care availability, rapid response, compassionate care, whenever you need it.',
   },
 ];
