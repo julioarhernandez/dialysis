@@ -23,7 +23,7 @@ import { INSURANCE_PLANS } from '../data/site.js';
         </div>
 
         <!-- Right: plan grid -->
-        <div class="grid grid-cols-2 gap-2.5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
           {INSURANCE_PLANS.map(plan => (
             <div class="rounded-[12px] px-4 py-3.5 text-sm font-medium flex items-center gap-2.5" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);">
               <span class="w-1.5 h-1.5 rounded-full bg-aqua flex-shrink-0"></span>
